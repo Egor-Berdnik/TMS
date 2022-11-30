@@ -1,4 +1,3 @@
 my_list = list(range(1, 51))
-result = []
-     for x in my_list:
+result = [my_list[-x-1] for x in range(len(my_list))]
 print(result)
