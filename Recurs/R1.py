@@ -1,16 +1,15 @@
 def recurs(src: dict, value: str, deep = 1, parent = None):
-    for k, v in src.items():
-        if isinstance(v, dict):
-            recurs(v, value)
-            deep += 1
-        elif isinstance(v, list):
-            recurs(v, value)
-            deep += 1
-        else:
-            if v == value:
-                print(f"Значение {value} найдено на глубине {deep}")
-                return
-
+    if isinstance(src, dict):
+         deep += 1
+         for k, v in src.items():
+            recurs(v, value, deep = deep, parent = k)
+    elif isinstance(src, (list, set)):
+        for item in src:
+            recurs(item, value, deep = deep, parent = parent)
+    elif isinstance(src, str):
+        if src == value:
+            print(f"Значение {value} найдено на глубине {deep}, parent = {parent}")
+            return src
 
 source_dict = {
     "key1": {
@@ -39,4 +38,4 @@ source_dict = {
     "key4": "Kate"
 }
 
-print(recurs(source_dict, Bob))
+recurs(source_dict, "Bob")

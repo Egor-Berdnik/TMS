@@ -1,4 +1,6 @@
 def recursive_reverse(l):
+    a = []
+    for
     if len(l) == 0:
         return
     for i in l:
