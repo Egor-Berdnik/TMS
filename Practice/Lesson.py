@@ -111,3 +111,15 @@ with get_connection('dbname') as conn:
     #     query = """ALTER TABLE products ADD COLUMN discount varchar(64);"""
     #     cursor.execute(query)
     #     conn.commit()
+
+# with conn.cursor() as cursor:
+#     query = """DELETE FROM orders USING customers WHERE orders.customer_id = customers.id"""
+#     cursor.execute(query)
+#     conn.commit()
+
+#     query = """DELETE FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE customers.id = orders.customer_id)"""
+#     cursor.execute(query)
+#     conn.commit()
+
+# set transaction isolation level "name levela"
+

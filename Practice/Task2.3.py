@@ -16,13 +16,15 @@ with get_connection('dbname') as conn:
     with conn.cursor() as cursor:
         product_ = input("Введите имя продукта: ");
 
-        # query = """SELECT name, price FROM products WHERE id=2"""
-        cursor.execute("SELECT name, price FROM products VALUE (%s, %s)", product_)
+        cursor.execute("select * from products join category on products.category_id = category.id WHERE products.name = %s", (product_,))
         data = cursor.fetchone()
-        for item in data:
-            print(f"product name: {item[0]},\n"
-                  f"product price: {item[1]},\n"
-                  f"product count: {item[2]},\n"
-                  f"product description: {item[3]},\n"
-                  f"product category name; {item[6]}")
-            print('--------------------------------------')
+        print(f"product id: {data[0]},\n"
+              f"product name: {data[1]},\n"
+              f"product price: {data[2]},\n"
+              f"product count: {data[3]},\n"
+              f"product description: {data[4]},\n"
+              f"product discount: {data[6]},\n"
+              f"product category_id: {data[5]},\n"
+              f"product category name: {data[8]}")
+        print('--------------------------------------')
+
